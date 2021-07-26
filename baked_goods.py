@@ -49,6 +49,7 @@ def parse_cookie_files(input):
 
     [domain, 'TRUE', path, httpOnly, expiration, name, value].join('\t')
 
+print("# Netscape HTTP Cookie File")
 for i in files:
     new_cookie = parse_cookie_files(i.read())
     i.close()
