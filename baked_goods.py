@@ -8,7 +8,7 @@ args = sys.argv[1:]
 files = list()
 
 for i in args:
-    files.append(open(i, 'rt'))
+    files.append(open(i, 'rt', encoding='utf-8'))
 
 def parse_cookie_files(input):
     cookies = input.split('\n')
