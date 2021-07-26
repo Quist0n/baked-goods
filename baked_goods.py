@@ -11,11 +11,11 @@ for i in args:
     files.append(open(i, 'rt'))
 
 def parse_cookie_files(input):
-
     cookies = input.split('\n')
     info_list = list()
 
     for cookie in cookies:
+        cookie = cookie.strip()
         try:
             name, value, domain, path, expiration,size,httpOnly = cookie.split('\t')
         except:
