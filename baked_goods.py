@@ -17,7 +17,7 @@ def parse_cookie_files(input):
     for cookie in cookies:
         cookie = cookie.strip()
         try:
-            name, value, domain, path, expiration,size,httpOnly = cookie.split('\t')
+            name, value, domain, path, expiration, size, httpOnly = cookie.split('\t')
         except:
             continue
 
