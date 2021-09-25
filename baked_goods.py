@@ -11,16 +11,17 @@ for i in args:
     files.append(open(i, 'rt', encoding='utf-8'))
 
 def parse_cookie_files(input):
-    cookies = input.split('\n')
+    cookies = input.splitlines()
     info_list = list()
 
     for cookie in cookies:
+        help_message = f"#Failed to parse cookie:\n#'{cookie}'\n#It may be a blank line, remove it if it is"
         cookie = cookie.strip()
         try:
-            name, value, domain, path, expiration, size, httpOnly = cookie.split('\t')
-        except:
+            name, value, domain, path, expiration, size, httpOnly = [c for c in cookie.split('\t') if c][:7]
+        except ValueError:
+            print(help_message, file=sys.stderr)
             continue
-
         if name == False:
             continue
         if domain[0] != '.':
