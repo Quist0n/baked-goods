@@ -4,12 +4,6 @@ import os
 from time import time
 import datetime
 
-args = sys.argv[1:]
-files = list()
-
-for i in args:
-    files.append(open(i, 'rt', encoding='utf-8'))
-
 def parse_cookie_files(input):
     cookies = input.splitlines()
     info_list = list()
@@ -48,12 +42,13 @@ def parse_cookie_files(input):
 
     return info_list
 
-    [domain, 'TRUE', path, httpOnly, expiration, name, value].join('\t')
+args = sys.argv[1:]
+cookies = list()
 
 print("# Netscape HTTP Cookie File")
-for i in files:
-    new_cookie = parse_cookie_files(i.read())
-    i.close()
-    for j in new_cookie:
+for i in args:
+    with open(i, 'rt', encoding='utf-8') as f:
+        cookie = parse_cookie_files(f.read())
+    for j in cookie:
         line = f"{j.get('domain')}, {j.get('include_subdomains')}, {j.get('path')}, {j.get('httpOnly')}, {j.get('expiration')}, {j.get('name')}, {j.get('value')}".replace(', ','\t')
         print(line)
